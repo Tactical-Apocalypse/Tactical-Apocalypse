@@ -9,8 +9,8 @@ body{
     align-items: center;
 }
 #gameboard{
-    height: 70vh;
-    width: 70vw;
+    height: 1000px;
+    width: 1000px;
     background-color: black;
     margin-top: 100px;
     display: flex;
