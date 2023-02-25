@@ -39,6 +39,24 @@ function animate (newUpdate) {
     startAnimation();
 };
 
+const keyMap = [];
+
+window.addEventListener("keydown", e => {
+    let { key } = e
+    if(!keyMap.includes(key)) {
+        keyMap.push(key);
+    }
+    console.log(keyMap);
+});
+
+window.addEventListener("keyup", e => {
+    let { key } = e
+    if(keyMap.includes(key)){
+        keyMap.splice(keyMap.indexOf(key), 1);
+    }
+    console.log(keyMap);
+})
+
 ///////////////
 // Exports
 ///////////////

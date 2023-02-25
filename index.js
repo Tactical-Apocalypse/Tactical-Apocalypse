@@ -4,12 +4,17 @@
 ////////////////////////
 
 const player = document.getElementById("player");
-console.log(player)
+const gameBoard = document.getElementById("gameboard");
 
 ////////////////////////
 // Initial Setup
 ////////////////////////
 
+
+const playerObj = {
+    x: player.offsetWidth,
+    y: player.offsetHeight
+}
 
 ////////////////////////
 // New Frame Logic
@@ -21,24 +26,12 @@ console.log(player)
 // Event Handlers
 ////////////////////////
 
+gameBoard.addEventListener('onmouseover', movePlayer);
 
 ////////////////////////
-// Helper Functions
+// Functions
 ////////////////////////
 
-// Factory Function
-
-// Setup Helpers
-
-// Movement Helpers
-
-
-
-
-// Collisions
-
-
-// Scoring
-
-
-// Start and End Game
+function movePlayer(e){
+    
+}
