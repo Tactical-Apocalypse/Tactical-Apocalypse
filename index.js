@@ -1,37 +1,31 @@
-
 ////////////////////////
 // Variables
 ////////////////////////
 
-const player = document.getElementById("player");
-console.log(player)
+// const player = document.getElementById("player");
+// console.log(player);
 
 ////////////////////////
 // Initial Setup
 ////////////////////////
 
-
 const playerObj = {
-    x: player.offsetWidth,
-    y: player.offsetHeight
-}
+  x: player.offsetWidth,
+  y: player.offsetHeight,
+};
 
 ////////////////////////
 // New Frame Logic
 ////////////////////////
 
-
-
 ////////////////////////
 // Event Handlers
 ////////////////////////
 
-gameBoard.addEventListener('onmouseover', movePlayer);
+gameBoard.addEventListener("onmouseover", movePlayer);
 
 ////////////////////////
 // Functions
 ////////////////////////
 
-function movePlayer(e){
-    
-}
+function movePlayer(e) {}

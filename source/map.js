@@ -2,15 +2,13 @@
 // Imports
 ///////////////
 import animate from "./animations.js";
-import Player from "./characters.js"
-
+import Player from "./characters.js";
 
 ////////////////
 // DOM Elements
 ////////////////
-const canvas = document.querySelector('#canvas');
-const ctx = canvas.getContext('2d');
-
+const canvas = document.querySelector("#canvas");
+const ctx = canvas.getContext("2d");
 
 //////////////
 // Variables
@@ -19,38 +17,32 @@ const ctx = canvas.getContext('2d');
 // let width = canvas.offsetLeft + (canvas.offsetWidth / 2);
 // let height = canvas.offsetTop + (canvas.offsetHeight / 2);
 
-
 //////////////
 // Functions
 //////////////
+
 const player = new Player();
-function update () {
-    player.update();
-    player.create(ctx);
-    console.log('update');
+function update() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height); //refresh background
+  player.update();
+  player.create(ctx);
+  console.log("update");
 }
 
 animate(update);
-
 
 /////////////////////
 // Event Listeners
 /////////////////////
 
-
-
-
 /////////////////////
 // Event Handlers
 /////////////////////
-
-
-
 
 ///////////////
 // Exports
 ///////////////
 export default {
-    canvas,
-    ctx
-}
+  canvas,
+  ctx,
+};
