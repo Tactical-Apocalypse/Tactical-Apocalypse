@@ -5,11 +5,15 @@
 }
 
 #canvas {
-    color:darkgrey;
+    background-color:whitesmoke;
+    width: 95vw;
+    max-width: 850px;
+    margin: 10vmin 0;
 }
 
 body{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }

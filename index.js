@@ -4,7 +4,7 @@
 ////////////////////////
 
 const player = document.getElementById("player");
-const gameBoard = document.getElementById("gameboard");
+console.log(player)
 
 ////////////////////////
 // Initial Setup
