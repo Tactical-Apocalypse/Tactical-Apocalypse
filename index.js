@@ -3,8 +3,8 @@
 // Variables
 ////////////////////////
 
-const player = document.getElementById("player");
-console.log(player)
+// const player = document.getElementById("player");
+// console.log(player)
 
 ////////////////////////
 // Initial Setup

@@ -97,6 +97,12 @@ class Player {
       }
       this.rotate(player)
     }
+
+    create (context) {
+        context.beginPath();
+        context.fillRect(this.pos.x, this.pos.y, 10, 10);
+        context.stroke();
+    }
   
     rotate(player) {}
     update(player, zombies) {

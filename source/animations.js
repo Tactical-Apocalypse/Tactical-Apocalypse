@@ -17,7 +17,7 @@ let update
 // animationLoop is recursively called with requestAnimationFrame
 function animationLoop () {
     requestAnimationFrame(animationLoop);
-    now = Date.now();
+    now = Date.now(); // Number of milliseconds that elapsed since the epoch, January 1, 1970
     elapsed = now - then;
     if (elapsed > interval) {
         then = now - (elapsed % interval);
