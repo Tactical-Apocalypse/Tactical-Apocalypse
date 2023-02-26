@@ -10,9 +10,8 @@ let interval, start, now, then, elapsed;
 let update;
 
 ///////////////////////
-// Animation function
+// New Frame Logic
 ///////////////////////
-
 // animationLoop is recursively called with requestAnimationFrame
 function animationLoop() {
   requestAnimationFrame(animationLoop);
@@ -21,8 +20,8 @@ function animationLoop() {
   if (elapsed > interval) {
     then = now - (elapsed % interval);
     update();
-  }
-}
+  };
+};
 
 // The start game function sets animation interval (60 fps) and starts the 'animationLoop' function
 function startAnimation() {
@@ -30,7 +29,7 @@ function startAnimation() {
   then = Date.now();
   start = then;
   animationLoop();
-}
+};
 
 // The animate function sets or reassigns update and starts the animation
 function animate(newUpdate) {

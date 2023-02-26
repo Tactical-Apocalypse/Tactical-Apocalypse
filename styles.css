@@ -1,13 +1,13 @@
-* {
+*, *::before, *::after {
     box-sizing: border-box;
-    padding: 0px;
-    
+    margin: 0;
 }
 
 #canvas {
-    background-color:whitesmoke;
+    background-color:gainsboro;
     width: 95vw;
-    max-width: 850px;
+    /* height: 80vh; */
+    max-width: 1000px;
     margin: 10vmin 0;
 }
 
@@ -17,6 +17,11 @@ body{
     justify-content: center;
     align-items: center;
 }
+
+#tank {
+    display: none;
+}
+
 #gameboard{
     height: 1000px;
     width: 1000px;
