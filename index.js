@@ -1,31 +1,52 @@
-////////////////////////
-// Variables
-////////////////////////
+// ////////////////////////
+// // Variables
+// ////////////////////////
 
-// const player = document.getElementById("player");
-// console.log(player);
+// // const player = document.getElementById("player");
+// // console.log(player);
 
-////////////////////////
-// Initial Setup
-////////////////////////
+// ////////////////////////
+// // Initial Setup
+// ////////////////////////
 
-const playerObj = {
-  x: player.offsetWidth,
-  y: player.offsetHeight,
-};
+// const playerObj = {
+//   x: player.offsetWidth,
+//   y: player.offsetHeight,
+// };
 
-////////////////////////
-// New Frame Logic
-////////////////////////
+// ////////////////////////
+// // New Frame Logic
+// ////////////////////////
 
-////////////////////////
-// Event Handlers
-////////////////////////
+// ////////////////////////
+// // Event Handlers
+// ////////////////////////
 
-gameBoard.addEventListener("onmouseover", movePlayer);
+// gameBoard.addEventListener("onmouseover", movePlayer);
 
-////////////////////////
-// Functions
-////////////////////////
+// ////////////////////////
+// // Functions
+// ////////////////////////
 
-function movePlayer(e) {}
+// function movePlayer(e) {}
+
+import animate from "./source/animations.js"
+import Bullet from "./source/bullet.js"
+
+const bullets = []
+
+document.body.addEventListener("click", () => {
+  bullets.push(
+    new Bullet(player.vector.x, player.vector.y, player.angle)
+  )
+  console.log(bullets);
+})
+
+const update = () => {
+  bullets.forEach(bullet => {
+    bullet.update(bullets)
+    bullet.render(ctx)
+  })
+}
+
+animate(update);
