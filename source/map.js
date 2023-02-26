@@ -1,9 +1,10 @@
+
 ///////////////
 // Imports
 ///////////////
 import animate from "./animations.js";
 import Player from "./characters.js";
-
+import Bullet from "./bullet.js";
 ////////////////
 // DOM Elements
 ////////////////
@@ -48,9 +49,29 @@ function update() {
   player.update();
   player.create(ctx);
   console.log("update");
+  bullets.forEach(bullet => {
+    bullet.update(bullets)
+    bullet.render(ctx)
+  })
 }
 
+const bullets = []
+
+document.body.addEventListener("click", () => {
+  bullets.push(
+    new Bullet(player.pos.x, player.pos.y, player.angle)
+  )
+})
+
+const bulletUpdate = () => {
+  bullets.forEach(bullet => {
+    bullet.update(bullets)
+    bullet.render(ctx)
+  })
+}
+animate(bulletUpdate);
 animate(update);
+
 
 /////////////////////
 // Event Listeners

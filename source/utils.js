@@ -1,8 +1,6 @@
 ///////////////
 // Imports
 ///////////////
-import assets from './assets/*.png';
-
 
 /////////////////////
 // Utility Variables
