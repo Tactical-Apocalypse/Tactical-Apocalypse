@@ -1,17 +1,18 @@
 ///////////////
 // Imports
 ///////////////
+import assets from './assets/*.png';
 
 
-
-////////////////////////
+/////////////////////
 // Utility Variables
-////////////////////////
+/////////////////////
+let loaded = 0;
+const images = ['tank2'];
 
-
-////////////////////////
+/////////////////////
 // Utility Functions
-////////////////////////
+/////////////////////
 // Returns a random number between the 'min' and 'max' arguments, inclusive
 function random (min, max) {
     return (Math.random() * (max - min)) + min;
@@ -24,7 +25,13 @@ function distance (x1, y1, x2, y2) {
     return Math.sqrt(xx + yy);
 };
 
-
+///////////////
+// Image Load
+///////////////
+// for (const image of images) {
+//     const image = new Image();
+//     image.onload = function () {}
+// }
 
 ///////////////
 // Exports
