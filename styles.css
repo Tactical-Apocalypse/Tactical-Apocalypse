@@ -5,10 +5,9 @@
 
 #canvas {
     background-color:gainsboro;
-    width: 95vw;
-    /* height: 80vh; */
+    /* width: 95vw;
     max-width: 1000px;
-    margin: 10vmin 0;
+    margin: 10vmin 0; */
 }
 
 body{
@@ -18,7 +17,7 @@ body{
     align-items: center;
 }
 
-#tank {
+.image {
     display: none;
 }
 
