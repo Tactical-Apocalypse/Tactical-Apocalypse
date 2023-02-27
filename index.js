@@ -12,7 +12,8 @@ import Zombie from "./source/zombie.js";
 ///////////////
 const keyMap = []; // Keep tracks of which key(s) are being pressed down at any given moment
 const bullets = []; // Keeps track of the bullets that ar shot by the player
-
+const player = new Player ();
+const zombies = [ new Zombie(player) ];
 
 ////////////////
 // DOM Elements
@@ -27,10 +28,11 @@ const ctx = canvas.getContext("2d");
 /////////////////////
 window.onload = function () {
   resizeCanvas();
-};
+}; // Resizes canvas to fit the innerWidth and innerHeight of the webpage upon load
 window.onresize = function () {
   resizeCanvas();
-};
+}; // Resizes canvas to fit the innerWidth and innerHeight of the webpage upon webpage resizing
+
 document.addEventListener("keydown", keyPressed); // Adds a key as an element to the keyMap array whenever a key is pressed
 document.addEventListener("keyup", keyReleased); // Removes a key as an element from the keyMap array whenever a key is released
 canvas.addEventListener ('mousemove', rotatePlayer); // Rotates player to rotate towards mouse position
@@ -40,8 +42,8 @@ document.addEventListener("keydown", fireBullet);
 // Event Hadelers
 //////////////////
 function resizeCanvas () {
-  canvas.width = 9*window.innerWidth/10;
-  canvas.height = 6*window.innerHeight/7;
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 };
 
 // Setup for player movement
@@ -89,13 +91,9 @@ function fireBullet (event) {
   };
   
   
-  ///////////////////
-  // New Frame Logic
-  ///////////////////
-// Create new player
-const player = new Player ();
-// const zombies = [ new Zombie(player) ];
-
+///////////////////
+// New Frame Logic
+///////////////////
 // Updates each animation frame
 function update() {
   ctx.clearRect(0, 0, canvas.width, canvas.height); //refreshes canvas
@@ -108,7 +106,7 @@ function update() {
   })
   zombies.forEach(zombie => {
     zombie.update(player, zombies)
-    zombie.render(ctx)
+    zombie.create(ctx)
   });
   player.update();
   player.create(ctx);

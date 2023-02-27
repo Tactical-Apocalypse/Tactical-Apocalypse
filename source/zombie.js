@@ -18,14 +18,14 @@ const zombie = document.querySelector('#zombie');
 // Zombie class
 ////////////////
 class Zombie {
-  speed = 1.1
+  speed = 1.5
   radius = 0
-  health = 5
+  health = 2
 
   constructor(player) {
-    this.vector = {
-      x: canvas.width + this.radius,
-      y: random(-this.radius, canvas.height + this.radius)
+    this.pos = {
+      x: random(0, canvas.width),
+      y: random(-300, 0)
     }
     this.rotate(player)
   }
@@ -38,13 +38,13 @@ class Zombie {
     context.translate(tX, tY);
     context.rotate(this.angle);
     context.translate(-tX, -tY);
-    context.drawImage(zombie, this.pos.x-20, this.pos.y-20, 60, 40);
+    context.drawImage(zombie, this.pos.x-20, this.pos.y-30, 60, 40);
     context.restore();
   }
   
   rotate(player) {
-    let dy = player.vector.y - this.vector.y;
-    let dx = player.vector.x - this.vector.x;
+    let dy = player.pos.y - this.pos.y;
+    let dx = player.pos.x - this.pos.x;
     this.angle = Math.atan2(dy, dx);
   }
 
@@ -55,8 +55,8 @@ class Zombie {
   }
 
   this.rotate(player)
-  this.vector.x += Math.cos(this.angle) * this.speed
-  this.vector.y += Math.sin(this.angle) * this.speed
+  this.pos.x += Math.cos(this.angle) * this.speed
+  this.pos.y += Math.sin(this.angle) * this.speed
   }
 };
 

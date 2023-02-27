@@ -1,17 +1,21 @@
+///////////////
+// Imports
+///////////////
+import distance from "./utils.js";
 
 
-
+////////////////
+// DOM Elements
+////////////////
 // const canvas = document.querySelector("#canvas");
 // const ctx = canvas.getContext("2d");
 
+
+////////////////
+// Variables
+////////////////
 const width = window.innerWidth
 const height = window.innerHeight
-
-const distance = (x1, y1, x2, y2) => {
-  let xx = Math.pow((x2 - x1), 2)
-  let yy = Math.pow((y2 - y1), 2)
-  return Math.sqrt(xx + yy)
-}
 
 class Bullet {
   radius = 4
@@ -34,14 +38,26 @@ class Bullet {
       this.vector.x < 0 - this.radius ||
       this.vector.y < 0 - this.radius)
   }
+
   update(bullets, zombies) {
     if(this.boundary()) {
       bullets = bullets.splice(bullets.indexOf(this), 1)
       return
+    };
+    for(const bullet of bullets) {
+      for(const zombie of zombies) {
+        let d = distance(zombie.vector.x, zombie.vector.y, this.vector.x, this.vector.y)
+        if(d < zombie.radius) {
+          bullets = bullets.splice(bullets.indexOf(this), 1)
+          zombie.health -- 
+          return
+        }
+      }
     }
     this.vector.x += this.angle.x * this.speed
     this.vector.y += this.angle.y * this.speed
   }
+
   render(ctx) {
     ctx.beginPath()
     ctx.arc(this.vector.x, this.vector.y, this.radius, 0, Math.PI * 2)
