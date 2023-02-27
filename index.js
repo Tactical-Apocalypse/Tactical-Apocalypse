@@ -11,9 +11,9 @@ import Zombie from "./source/zombie.js";
 // Variables
 ///////////////
 export const keyMap = []; // Keep tracks of which key(s) are being pressed down at any given moment
-const bullets = []; // Keeps track of the bullets that ar shot by the player
+export const bullets = []; // Keeps track of the bullets that ar shot by the player
 export const player = new Player (); // Creates a player instance
-export const zombies = [ new Zombie(player) ]; // Keeps track of the number of active zombies
+export const zombies = [new Zombie(player)]; // Keeps track of the number of active zombies
 
 ////////////////
 // DOM Elements
@@ -36,9 +36,10 @@ document.addEventListener("keydown", keyPressed); // Adds a key as an element to
 document.addEventListener("keyup", keyReleased); // Removes a key as an element from the keyMap array whenever a key is released
 canvas.addEventListener ('mousemove', rotatePlayer); // Rotates player to rotate towards mouse position
 document.addEventListener("keydown", fireBullet);
+setInterval(spawnZombie, 3000) // Spawns zombies in intervals
 
 //////////////////
-// Event Hadelers
+// Event Handelers
 //////////////////
 // Setup for making the canvas dynamic and adpt to the window viewport size
 function resizeCanvas () {
@@ -82,10 +83,15 @@ function mousePointer (event) {
 // Setup for firing bullets
 function fireBullet (event) {
   if (event.code === 'Space') {
-    bullets.push(
-      new Bullet(player.pos.x, player.pos.y, player.angle));
-    };
+    const bullet = new Bullet(player.pos.x, player.pos.y, player.angle);
+    bullets.push(bullet);
   };
+};
+
+// Setup for spawning zombies
+function spawnZombie () {
+  zombies.push(new Zombie(player));
+};
   
   
 ///////////////////
@@ -118,8 +124,3 @@ animate(update);
 //   bullets,
 //   zombies
 // };
-// export default {
-//   random,
-//   distance,
-//   mousePointer
-// }

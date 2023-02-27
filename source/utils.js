@@ -17,11 +17,3 @@ export function distance (x1, y1, x2, y2) {
     let yy = Math.pow((y2 - y1), 2);
     return Math.sqrt(xx + yy);
 };
-
-///////////////
-// Exports
-///////////////
-// export {
-//   random,
-//   distance
-// }
