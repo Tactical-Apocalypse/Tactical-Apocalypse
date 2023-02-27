@@ -87,4 +87,4 @@ animate(update);
 export default {
   canvas,
   ctx,
-};
+}; 
