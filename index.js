@@ -10,17 +10,16 @@ import Zombie from "./source/zombie.js";
 ///////////////
 // Variables
 ///////////////
-const keyMap = []; // Keep tracks of which key(s) are being pressed down at any given moment
-const bullets = []; // Keeps track of the bullets that ar shot by the player
-const player = new Player ();
-const zombies = [ new Zombie(player) ];
+export const keyMap = []; // Keep tracks of which key(s) are being pressed down at any given moment
+export const bullets = []; // Keeps track of the bullets that ar shot by the player
+export const player = new Player (); // Creates a player instance
+export const zombies = [new Zombie(player)]; // Keeps track of the number of active zombies
 
 ////////////////
 // DOM Elements
 ////////////////
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
-// const tank = document.querySelector('#tank');
 
 
 /////////////////////
@@ -37,10 +36,12 @@ document.addEventListener("keydown", keyPressed); // Adds a key as an element to
 document.addEventListener("keyup", keyReleased); // Removes a key as an element from the keyMap array whenever a key is released
 canvas.addEventListener ('mousemove', rotatePlayer); // Rotates player to rotate towards mouse position
 document.addEventListener("keydown", fireBullet);
+setInterval(spawnZombie, 3000) // Spawns zombies in intervals
 
 //////////////////
-// Event Hadelers
+// Event Handelers
 //////////////////
+// Setup for making the canvas dynamic and adpt to the window viewport size
 function resizeCanvas () {
   canvas.width = window.innerWidth/2;
   canvas.height = window.innerHeight/2;
@@ -70,9 +71,6 @@ function rotatePlayer (event) {
 };
 
 function mousePointer (event) {
-  // return {x: event.clientX, y: event.clientY};
-  // mouseLocation.mouseX = event.clientX;
-  // mouse
   // Element.getBoundingClientRect() return an object of properties that describes the position and size of the element that calls the function
   const rect = canvas.getBoundingClientRect();
   // The x-coordinate of the mouse is represented by the x-position of the mouse within the screen viewport (clientX) minus the x-coordinate value of the canvas (rect.left)
@@ -85,10 +83,15 @@ function mousePointer (event) {
 // Setup for firing bullets
 function fireBullet (event) {
   if (event.code === 'Space') {
-    bullets.push(
-      new Bullet(player.pos.x, player.pos.y, player.angle));
-    };
+    const bullet = new Bullet(player.pos.x, player.pos.y, player.angle);
+    bullets.push(bullet);
   };
+};
+
+// Setup for spawning zombies
+function spawnZombie () {
+  zombies.push(new Zombie(player));
+};
   
   
 ///////////////////
@@ -117,9 +120,8 @@ animate(update);
 ///////////////
 // Exports
 ///////////////
-export default keyMap;
-// export default {
-//   random,
-//   distance,
-//   mousePointer
-// }
+// export {
+//   keyMap,
+//   bullets,
+//   zombies
+// };

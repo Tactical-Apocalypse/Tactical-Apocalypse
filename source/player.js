@@ -1,7 +1,7 @@
 ///////////////
 // Imports
 ///////////////
-import keyMap from "../index.js";
+import {keyMap} from "../index.js";
 
 
 ////////////////
@@ -10,6 +10,7 @@ import keyMap from "../index.js";
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
 const rect = canvas.getBoundingClientRect();
+const shooter = document.querySelector('#shooter');
 
 
 ////////////////
@@ -27,7 +28,7 @@ class Player {
       x: canvas.offsetLeft + rect.width/2,
       y: canvas.offsetTop + rect.height/2,
     };
-    this.speed = 2;
+    this.speed = 3;
     this.radius = 0;
     this.angle = 0 //-Math.PI / 2;
   }

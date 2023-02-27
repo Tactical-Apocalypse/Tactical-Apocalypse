@@ -1,7 +1,7 @@
 ///////////////
 // Imports
 ///////////////
-// import random from "./utils.js";
+import {random} from "./utils.js";
 
 ////////////////
 // DOM Elements
@@ -18,9 +18,8 @@ const zombie = document.querySelector('#zombie');
 // Zombie class
 ////////////////
 class Zombie {
-  speed = 1.5
+  speed = 0.7
   radius = 0
-  health = 2
 
   constructor(player) {
     this.pos = {
@@ -60,9 +59,9 @@ class Zombie {
   }
 };
 
-function random (min, max) {
-  return (Math.random() * (max - min)) + min;
-};
+// function random (min, max) {
+//   return (Math.random() * (max - min)) + min;
+// };
 ///////////////
 // Exports
 ///////////////

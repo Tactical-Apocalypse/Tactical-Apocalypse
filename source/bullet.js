@@ -1,7 +1,9 @@
 ///////////////
 // Imports
 ///////////////
-import distance from "./utils.js";
+import { bullets, zombies } from "../index.js";
+// import {bullets} from "../index,js";
+// import {zombies} from "../index.js";
 
 
 ////////////////
@@ -14,9 +16,13 @@ import distance from "./utils.js";
 ////////////////
 // Variables
 ////////////////
-const width = window.innerWidth
-const height = window.innerHeight
+const width = window.innerWidth;
+const height = window.innerHeight;
 
+
+////////////////
+// Bullet Class
+////////////////
 class Bullet {
   radius = 4
   speed = 10
@@ -44,15 +50,16 @@ class Bullet {
       bullets = bullets.splice(bullets.indexOf(this), 1)
       return
     };
-    for(const bullet of bullets) {
-      for(const zombie of zombies) {
-        let d = distance(zombie.vector.x, zombie.vector.y, this.vector.x, this.vector.y)
-        if(d < zombie.radius) {
-          bullets = bullets.splice(bullets.indexOf(this), 1)
-          zombie.health -- 
-          return
+    for(let bullet in bullets) {
+      for(let zombie in zombies) {
+        let d = distance(zombie.pos.x, zombie.pos.y, this.vector.x, this.vector.y)
+        if(d < 10) {
+          bullets = bullets.splice(bullets.indexOf(this), 1);
+          // zombies = zombies.splice(.indexOf(this), 1);
+          zombies = zombies.splice(zombies.indexOf(zombie), 1);
         }
       }
+      console.log(bullets, zombies);
     }
     this.vector.x += this.angle.x * this.speed
     this.vector.y += this.angle.y * this.speed
