@@ -42,8 +42,8 @@ document.addEventListener("keydown", fireBullet);
 // Event Hadelers
 //////////////////
 function resizeCanvas () {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  canvas.width = window.innerWidth/2;
+  canvas.height = window.innerHeight/2;
 };
 
 // Setup for player movement
@@ -111,6 +111,7 @@ function update() {
   player.update();
   player.create(ctx);
 };
+
 
 animate(update);
 ///////////////

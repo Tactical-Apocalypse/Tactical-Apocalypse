@@ -4,10 +4,11 @@
 }
 
 #canvas {
-    background-color:gainsboro;
+    background-image: url(assets/desertmap.jpg) ;
     /* width: 95vw;
     max-width: 1000px;
     margin: 10vmin 0; */
+
 }
 
 body{
