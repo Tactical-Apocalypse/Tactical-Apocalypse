@@ -5,7 +5,7 @@ import Player from "./source/player.js";
 import Bullet from './source/bullet.js'
 import animate from "./source/animations.js";
 import Zombie from "./source/zombie.js";
-
+import { distance } from "./source/utils.js";
 
 ///////////////
 // Variables
@@ -36,7 +36,7 @@ document.addEventListener("keydown", keyPressed); // Adds a key as an element to
 document.addEventListener("keyup", keyReleased); // Removes a key as an element from the keyMap array whenever a key is released
 canvas.addEventListener ('mousemove', rotatePlayer); // Rotates player to rotate towards mouse position
 document.addEventListener("keydown", fireBullet);
-setInterval(spawnZombie, 3000) // Spawns zombies in intervals
+setInterval(spawnZombie, 5000) // Spawns zombies in intervals
 
 //////////////////
 // Event Handelers
@@ -53,7 +53,6 @@ function keyPressed (event) {
   if (!keyMap.includes(key)) {
     keyMap.push(key);
   };
-  console.log(keyMap);
 };
 
 function keyReleased (event) {
@@ -61,7 +60,6 @@ function keyReleased (event) {
   if (keyMap.includes(key)) {
     keyMap.splice(keyMap.indexOf(key), 1);
   };
-  console.log(keyMap);
 };
 
 // Setup for player rotation
@@ -91,6 +89,7 @@ function fireBullet (event) {
 // Setup for spawning zombies
 function spawnZombie () {
   zombies.push(new Zombie(player));
+  console.log(zombies)
 };
   
   
@@ -102,7 +101,6 @@ function update() {
   ctx.clearRect(0, 0, canvas.width, canvas.height); //refreshes canvas
   player.update();
   player.create(ctx);
-  console.log("update");
   bullets.forEach(bullet => {
     bullet.update(bullets)
     bullet.render(ctx)
@@ -113,6 +111,30 @@ function update() {
   });
   player.update();
   player.create(ctx);
+  // for(let bullet in bullets) {
+  //     for(let zombie in zombies) {
+  //       // debugger;
+  //       let d = distance(zombie.pos.x, zombie.pos.y, bullet.vector.x, bullet.vector.y)
+  //       console.log(bullets, zombies);
+  //       if(d < 10) {
+  //         bullets = bullets.splice(bullets.indexOf(bullet), 1);
+  //         // zombies = zombies.splice(.indexOf(this), 1);
+  //         zombies = zombies.splice(zombies.indexOf(zombie), 1);
+  //       }
+  //     }
+      
+  //   }
+  bullets.forEach(bullet => {
+    zombies.forEach(zombie => {
+      let d = distance(zombie.pos.x, zombie.pos.y, bullet.vector.x, bullet.vector.y)
+            console.log(bullets, zombies);
+            if(d < 20) {
+              bullets.splice(bullets.indexOf(bullet), 1);
+              // zombies = zombies.splice(.indexOf(this), 1);
+              zombies.splice(zombies.indexOf(zombie), 1);
+            }
+    })
+  })
 };
 
 

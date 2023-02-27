@@ -46,21 +46,23 @@ class Bullet {
   }
 
   update(bullets, zombies) {
+    console.log(bullets, zombies);
     if(this.boundary()) {
       bullets = bullets.splice(bullets.indexOf(this), 1)
       return
     };
-    for(let bullet in bullets) {
-      for(let zombie in zombies) {
-        let d = distance(zombie.pos.x, zombie.pos.y, this.vector.x, this.vector.y)
-        if(d < 10) {
-          bullets = bullets.splice(bullets.indexOf(this), 1);
-          // zombies = zombies.splice(.indexOf(this), 1);
-          zombies = zombies.splice(zombies.indexOf(zombie), 1);
-        }
-      }
-      console.log(bullets, zombies);
-    }
+    // for(let bullet in bullets) {
+    //   for(let zombie in zombies) {
+    //     let d = distance(zombie.pos.x, zombie.pos.y, this.vector.x, this.vector.y)
+    //     console.log(bullets, zombies);
+    //     if(d < 10) {
+    //       bullets = bullets.splice(bullets.indexOf(this), 1);
+    //       // zombies = zombies.splice(.indexOf(this), 1);
+    //       zombies = zombies.splice(zombies.indexOf(zombie), 1);
+    //     }
+    //   }
+      
+    // }
     this.vector.x += this.angle.x * this.speed
     this.vector.y += this.angle.y * this.speed
   }
