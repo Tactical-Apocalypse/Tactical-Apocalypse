@@ -10,6 +10,7 @@ import keyMap from "../index.js";
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
 const rect = canvas.getBoundingClientRect();
+const shooter = document.querySelector('#shooter');
 
 
 ////////////////

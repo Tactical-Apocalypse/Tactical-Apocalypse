@@ -10,17 +10,16 @@ import Zombie from "./source/zombie.js";
 ///////////////
 // Variables
 ///////////////
-const keyMap = []; // Keep tracks of which key(s) are being pressed down at any given moment
+export const keyMap = []; // Keep tracks of which key(s) are being pressed down at any given moment
 const bullets = []; // Keeps track of the bullets that ar shot by the player
-const player = new Player ();
-const zombies = [ new Zombie(player) ];
+export const player = new Player (); // Creates a player instance
+export const zombies = [ new Zombie(player) ]; // Keeps track of the number of active zombies
 
 ////////////////
 // DOM Elements
 ////////////////
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
-// const tank = document.querySelector('#tank');
 
 
 /////////////////////
@@ -41,6 +40,7 @@ document.addEventListener("keydown", fireBullet);
 //////////////////
 // Event Hadelers
 //////////////////
+// Setup for making the canvas dynamic and adpt to the window viewport size
 function resizeCanvas () {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
@@ -70,9 +70,6 @@ function rotatePlayer (event) {
 };
 
 function mousePointer (event) {
-  // return {x: event.clientX, y: event.clientY};
-  // mouseLocation.mouseX = event.clientX;
-  // mouse
   // Element.getBoundingClientRect() return an object of properties that describes the position and size of the element that calls the function
   const rect = canvas.getBoundingClientRect();
   // The x-coordinate of the mouse is represented by the x-position of the mouse within the screen viewport (clientX) minus the x-coordinate value of the canvas (rect.left)
@@ -116,7 +113,11 @@ animate(update);
 ///////////////
 // Exports
 ///////////////
-export default keyMap;
+// export {
+//   keyMap,
+//   bullets,
+//   zombies
+// };
 // export default {
 //   random,
 //   distance,

@@ -1,7 +1,7 @@
 ///////////////
 // Imports
 ///////////////
-// import random from "./utils.js";
+import random from "./utils.js";
 
 ////////////////
 // DOM Elements
@@ -60,9 +60,9 @@ class Zombie {
   }
 };
 
-function random (min, max) {
-  return (Math.random() * (max - min)) + min;
-};
+// function random (min, max) {
+//   return (Math.random() * (max - min)) + min;
+// };
 ///////////////
 // Exports
 ///////////////
