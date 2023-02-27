@@ -2,14 +2,9 @@
 // Imports
 ///////////////
 
-/////////////////////
-// Utility Variables
-/////////////////////
-let loaded = 0;
-const images = ['tank2'];
 
 /////////////////////
-// Utility Functions
+// Functions
 /////////////////////
 // Returns a random number between the 'min' and 'max' arguments, inclusive
 function random (min, max) {
@@ -22,14 +17,6 @@ function distance (x1, y1, x2, y2) {
     let yy = Math.pow((y2 - y1), 2);
     return Math.sqrt(xx + yy);
 };
-
-///////////////
-// Image Load
-///////////////
-// for (const image of images) {
-//     const image = new Image();
-//     image.onload = function () {}
-// }
 
 ///////////////
 // Exports

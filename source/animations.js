@@ -1,7 +1,7 @@
 ///////////////
 // Imports
 ///////////////
-// import canvas from "./map.js";
+
 
 ///////////////
 // Variables
@@ -35,19 +35,9 @@ function startAnimation() {
 function animate(newUpdate) {
   update = newUpdate;
   startAnimation();
-}
-
-const width = window.innerWidth
-const height = window.innerHeight
-
-const distance = (x1, y1, x2, y2) => {
-  let xx = Math.pow((x2 - x1), 2)
-  let yy = Math.pow((y2 - y1), 2)
-  return Math.sqrt(xx + yy)
-}
-
+};
 
 ///////////////
 // Exports
 ///////////////
-export default animate ;
+export default animate;
