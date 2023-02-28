@@ -1,8 +1,7 @@
 ///////////////
 // Imports
 ///////////////
-import {keyMap} from "../index.js";
-
+import { keyMap } from "../index.js";
 
 ////////////////
 // DOM Elements
@@ -10,14 +9,12 @@ import {keyMap} from "../index.js";
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
 const rect = canvas.getBoundingClientRect();
-const shooter = document.querySelector('#shooter');
-
+const shooter = document.querySelector("#shooter");
 
 ////////////////
 // Variables
 ////////////////
 // const keyMap = []; // Keep tracks of which key(s) are being pressed down at any given moment
-
 
 ////////////////
 // Player class
@@ -25,12 +22,12 @@ const shooter = document.querySelector('#shooter');
 class Player {
   constructor() {
     this.pos = {
-      x: canvas.offsetLeft + rect.width/2,
-      y: canvas.offsetTop + rect.height/2,
+      x: canvas.offsetLeft + rect.width / 2,
+      y: canvas.offsetTop + rect.height / 2,
     };
     this.speed = 3;
     this.radius = 0;
-    this.angle = 0 //-Math.PI / 2;
+    this.angle = 0; //-Math.PI / 2;
   }
 
   // Creates the player inside of the canvas
@@ -41,12 +38,12 @@ class Player {
     context.translate(tX, tY);
     context.rotate(this.angle);
     context.translate(-tX, -tY);
-    context.drawImage(shooter, this.pos.x-20, this.pos.y-20, 60, 40);
+    context.drawImage(shooter, this.pos.x - 20, this.pos.y - 20, 80, 60);
     context.restore();
   }
 
   // Aims/rotates player towards the position of the mmouse
-  rotate({x, y}) {
+  rotate({ x, y }) {
     // Find x-distance between the player and the mouse position
     let distanceX = x - this.pos.x;
     // Find y-distance between the player and the mouse position
@@ -62,7 +59,10 @@ class Player {
       this.pos.y -= this.speed;
     }
     // Movrs the player down
-    if (keyMap.includes("s") && this.pos.y + this.speed + this.radius < canvas.height) {
+    if (
+      keyMap.includes("s") &&
+      this.pos.y + this.speed + this.radius < canvas.height
+    ) {
       this.pos.y += this.speed;
     }
     // Moves the player to the left
@@ -70,7 +70,10 @@ class Player {
       this.pos.x -= this.speed;
     }
     // Moves the player to the right
-    if (keyMap.includes("d") && this.pos.x + this.speed + this.radius < canvas.width) {
+    if (
+      keyMap.includes("d") &&
+      this.pos.x + this.speed + this.radius < canvas.width
+    ) {
       this.pos.x += this.speed;
     }
   }
@@ -79,8 +82,7 @@ class Player {
   update() {
     this.move();
   }
-};
-
+}
 
 ///////////////
 // Exports
