@@ -17,12 +17,11 @@ class PauseMenu {
 
     init (container) {
         this.createElement();
-        this.keyboardMenu = new keyboardMenu({
+        this.PauseMenu = new PauseMenu({
             //
         });
-        this.keyboardMenu.init(this.element);
-        this.keyboardMenu.setOptions([]);
+        this.PauseMenu.init(this.element);
+        this.PauseMenu.setOptions([]);
         container.appendChild(this.element);
-        this.esc = 
     }
 }

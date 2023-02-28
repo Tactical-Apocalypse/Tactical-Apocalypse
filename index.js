@@ -88,9 +88,9 @@ function mousePointer (event) {
 
 // Setup for firing bullets
 function fireBullet(event) {
-  shots.play();
-  shots.playbackRate = 3;
   if (event.code === "Space") {
+    shots.play();
+    shots.playbackRate = 3;
     const bullet = new Bullet(player.pos.x, player.pos.y, player.angle);
     bullets.push(bullet);
   }
