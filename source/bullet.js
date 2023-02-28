@@ -1,16 +1,3 @@
-///////////////
-// Imports
-///////////////
-import { bullets, zombies } from "../index.js";
-// import {bullets} from "../index,js";
-// import {zombies} from "../index.js";
-
-////////////////
-// DOM Elements
-////////////////
-// const canvas = document.querySelector("#canvas");
-// const ctx = canvas.getContext("2d");
-
 ////////////////
 // Variables
 ////////////////
@@ -51,18 +38,6 @@ class Bullet {
       bullets = bullets.splice(bullets.indexOf(this), 1)
       return
     };
-    // for(let bullet in bullets) {
-    //   for(let zombie in zombies) {
-    //     let d = distance(zombie.pos.x, zombie.pos.y, this.vector.x, this.vector.y)
-    //     console.log(bullets, zombies);
-    //     if(d < 10) {
-    //       bullets = bullets.splice(bullets.indexOf(this), 1);
-    //       // zombies = zombies.splice(.indexOf(this), 1);
-    //       zombies = zombies.splice(zombies.indexOf(zombie), 1);
-    //     }
-    //   }
-
-    // }
     this.vector.x += this.angle.x * this.speed;
     this.vector.y += this.angle.y * this.speed;
   }
@@ -75,4 +50,7 @@ class Bullet {
   }
 }
 
+///////////
+// Exports
+///////////
 export default Bullet;

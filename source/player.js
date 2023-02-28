@@ -4,19 +4,6 @@
 import { keyMap } from "../index.js";
 
 ////////////////
-// DOM Elements
-////////////////
-// const canvas = document.querySelector("#canvas");
-const ctx = canvas.getContext("2d");
-const rect = canvas.getBoundingClientRect();
-const shooter = document.querySelector("#shooter");
-
-////////////////
-// Variables
-////////////////
-// const keyMap = []; // Keep tracks of which key(s) are being pressed down at any given moment
-
-////////////////
 // Player class
 ////////////////
 class Player {
@@ -25,7 +12,7 @@ class Player {
       x: canvas.width / 2,
       y: canvas.height / 2,
     };
-    this.speed = 3;
+    this.speed = 1.7;
     this.radius = 0;
     this.angle = 0; //-Math.PI / 2;
   }
@@ -38,7 +25,7 @@ class Player {
     context.translate(tX, tY);
     context.rotate(this.angle);
     context.translate(-tX, -tY);
-    context.drawImage(shooter, this.pos.x - 20, this.pos.y - 20, 80, 60);
+    context.drawImage(shooter, this.pos.x - 20, this.pos.y - 20, 60, 40);
     context.restore();
   }
 
