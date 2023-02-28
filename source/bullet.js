@@ -46,7 +46,6 @@ class Bullet {
   }
 
   update(bullets, zombies) {
-    console.log(bullets, zombies);
     if(this.boundary()) {
       bullets = bullets.splice(bullets.indexOf(this), 1)
       return

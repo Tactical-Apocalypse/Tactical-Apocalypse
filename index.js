@@ -101,7 +101,11 @@ function spawnZombie () {
 function update() {
   scoreElment.innerHTML = `<h1>SCORE: ${score}</h1>`
   if(gameEnd){
-  main.innerHTML = `<h1>GAME OVER!</h1> <h1>SCORE: ${score}</h1>`
+  main.innerHTML = `<h1>GAME OVER!</h1> <h1>SCORE: ${score}</h1><a href="startup.html" id="restart">Restart?</a>`
+  let restart = document.getElementById("restart");
+  restart.style.textDecoration = "none";
+  restart.style.color = "yellow"
+  restart.style.fontSize = "25px"
   main.style = "padding:200px;"
 }else{
   ctx.clearRect(0, 0, canvas.width, canvas.height); //refreshes canvas
@@ -123,7 +127,6 @@ function update() {
             if(d < 20) {
               score++;
               bullets.splice(bullets.indexOf(bullet), 1);
-              // zombies = zombies.splice(.indexOf(this), 1);
               zombies.splice(zombies.indexOf(zombie), 1);
             }
     })
