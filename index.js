@@ -22,8 +22,7 @@ let gameEnd = false;
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
 const main = document.querySelector("main");
-const scoreElment = document.querySelector("#score");
-console.log(scoreElment);
+
 /////////////////////
 // Event listeners
 /////////////////////
@@ -99,49 +98,47 @@ function spawnZombie () {
 ///////////////////
 // Updates each animation frame
 function update() {
-  scoreElment.innerHTML = `<h1>SCORE: ${score}</h1>`
-  if(gameEnd){
-  main.innerHTML = `<h1>GAME OVER!</h1> <h1>SCORE: ${score}</h1><a href="startup.html" id="restart">Restart?</a>`
-  let restart = document.getElementById("restart");
-  restart.style.textDecoration = "none";
-  restart.style.color = "yellow"
-  restart.style.fontSize = "25px"
-  main.style = "padding:200px;"
-}else{
-  ctx.clearRect(0, 0, canvas.width, canvas.height); //refreshes canvas
-  player.update();
-  player.create(ctx);
-  bullets.forEach(bullet => {
-    bullet.update(bullets)
-    bullet.render(ctx)
-  })
-  zombies.forEach(zombie => {
-    zombie.update(player, zombies)
-    zombie.create(ctx)
-  });
-  player.update();
-  player.create(ctx);
-  bullets.forEach(bullet => {
-    zombies.forEach(zombie => {
-      let d = distance(zombie.pos.x, zombie.pos.y, bullet.vector.x, bullet.vector.y)
-            if(d < 20) {
-              score++;
-              bullets.splice(bullets.indexOf(bullet), 1);
-              zombies.splice(zombies.indexOf(zombie), 1);
-            }
-    })
-  }) 
-  zombies.forEach(zombie => {
-    let d = distance(zombie.pos.x, zombie.pos.y, player.pos.x, player.pos.y)
-    if(d < 10){
-      gameEnd = true
-    }
-  })
+  if (gameEnd) {
+    main.innerHTML = "<h1>GAME OVER!</h1>";
+    main.style = "padding:200px;";
+  } else {
+    ctx.clearRect(0, 0, canvas.width, canvas.height); //refreshes canvas
+    player.update();
+    player.create(ctx);
+    bullets.forEach((bullet) => {
+      bullet.update(bullets);
+      bullet.render(ctx);
+    });
+    zombies.forEach((zombie) => {
+      zombie.update(player, zombies);
+      zombie.create(ctx);
+    });
+    player.update();
+    player.create(ctx);
+    bullets.forEach((bullet) => {
+      zombies.forEach((zombie) => {
+        let d = distance(
+          zombie.pos.x,
+          zombie.pos.y,
+          bullet.vector.x,
+          bullet.vector.y
+        );
+        if (d < 20) {
+          score++;
+          bullets.splice(bullets.indexOf(bullet), 1);
+          // zombies = zombies.splice(.indexOf(this), 1);
+          zombies.splice(zombies.indexOf(zombie), 1);
+        }
+      });
+    });
+    zombies.forEach((zombie) => {
+      let d = distance(zombie.pos.x, zombie.pos.y, player.pos.x, player.pos.y);
+      if (d < 10) {
+        gameEnd = true;
+      }
+    });
+  }
 }
-};
-
-
-
 animate(update);
 
 ///////////////
@@ -151,4 +148,4 @@ animate(update);
 //   keyMap,
 //   bullets,
 //   zombies
-// };
+//}
