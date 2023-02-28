@@ -19,6 +19,7 @@ let gameEnd = false;
 let shots = document.getElementById("audio");
 let footstep = document.getElementById("footstep");let pause = false;
 
+let round = 1;
 ////////////////
 // DOM Elements
 ////////////////
@@ -26,6 +27,7 @@ export const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
 const main = document.querySelector("main");
 const scoreElement = document.querySelector("#score");
+const roundElement = document.querySelector("#round");
 
 /////////////////////
 // Event listeners
@@ -41,7 +43,8 @@ document.addEventListener("keydown", keyPressed); // Adds a key as an element to
 document.addEventListener("keyup", keyReleased); // Removes a key as an element from the keyMap array whenever a key is released
 canvas.addEventListener("mousemove", rotatePlayer); // Rotates player to rotate towards mouse position
 document.addEventListener("keydown", fireBullet);
-setInterval(spawnZombie, 5000); // Spawns zombies in intervals
+setInterval(newRound, 1000);
+setInterval(spawnZombie, 5000) // Spawns zombies in intervals
 
 //////////////////
 // Event Handelers
@@ -68,12 +71,12 @@ function keyReleased(event) {
 }
 
 // Setup for player rotation
-function rotatePlayer(event) {
+function rotatePlayer (event) {
   const mousePosition = mousePointer(event);
   player.rotate(mousePosition);
-}
+};
 
-function mousePointer(event) {
+function mousePointer (event) {
   // Element.getBoundingClientRect() return an object of properties that describes the position and size of the element that calls the function
   const rect = canvas.getBoundingClientRect();
   // The x-coordinate of the mouse is represented by the x-position of the mouse within the screen viewport (clientX) minus the x-coordinate value of the canvas (rect.left)
@@ -117,42 +120,57 @@ function checkContact(bullets, zombies) {
   });
 }
 
-///////////////////
+///////////////////awwawwda
 // New Frame Logic
 ///////////////////
 // Updates each animation frame
 function update() {
-  scoreElement.innerHTML = `<h1>SCORE: ${score}</h1>`;
-  if (gameEnd) {
-    main.innerHTML = `<h1>GAME OVER!</h1> <h1>SCORE: ${score}</h1><a href="startup.html" id="restart">Restart?</a>`;
-    let restart = document.getElementById("restart");
-    restart.style.textDecoration = "none";
-    restart.style.color = "yellow";
-    restart.style.fontSize = "25px";
-    main.style = "padding:200px;";
-  } else {
-    ctx.clearRect(0, 0, canvas.width, canvas.height); //refreshes canvas
-    player.update();
-    player.create(ctx);
-    bullets.forEach((bullet) => {
-      bullet.update(bullets);
-      bullet.render(ctx);
-    });
-    zombies.forEach((zombie) => {
-      zombie.update(player, zombies);
-      zombie.create(ctx);
-    });
-    player.update();
-    player.create(ctx);
-    checkContact(bullets, zombies);
-    zombies.forEach((zombie) => {
-      let d = distance(zombie.pos.x, zombie.pos.y, player.pos.x, player.pos.y);
-      if (d < 10) {
-        gameEnd = true;
-      }
-    });
-  }
+  scoreElement.innerHTML = `<h1>SCORE: ${score}</h1>`
+  roundElement.innerHTML = `<h4>ROUND: ${round}</h4>`
+  if(gameEnd){
+  main.innerHTML = `<h1>GAME OVER!</h1> <h1>SCORE: ${score}</h1><a href="startup.html" id="restart">Restart?</a>`
+  let restart = document.getElementById("restart");
+  restart.style.textDecoration = "none";
+  restart.style.color = "yellow"
+  restart.style.fontSize = "25px"
+  main.style = "padding:200px;"
+}else{
+  ctx.clearRect(0, 0, canvas.width, canvas.height); //refreshes canvas
+  player.update();
+  player.create(ctx);
+  bullets.forEach(bullet => {
+    bullet.update(bullets)
+    bullet.render(ctx)
+  })
+  zombies.forEach(zombie => {
+    zombie.update(player, zombies)
+    zombie.create(ctx)
+  });
+  player.update();
+  player.create(ctx);
+  bullets.forEach(bullet => {
+    zombies.forEach(zombie => {
+      let d = distance(zombie.pos.x, zombie.pos.y, bullet.vector.x, bullet.vector.y)
+            if(d < 20) {
+              score += round;
+              bullets.splice(bullets.indexOf(bullet), 1);
+              zombies.splice(zombies.indexOf(zombie), 1);
+            }
+    })
+  }) 
+  zombies.forEach(zombie => {
+    let d = distance(zombie.pos.x, zombie.pos.y, player.pos.x, player.pos.y)
+    if(d < 60){
+      gameEnd = true
+    }
+  })
 }
+};
+
+function newRound(){
+  round++
+}
+
 animate(update);
 
 ///////////////
