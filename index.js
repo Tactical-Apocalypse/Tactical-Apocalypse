@@ -21,8 +21,9 @@ let gameEnd = false;
 ////////////////
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
-const main = document.querySelector("main")
-  
+const main = document.querySelector("main");
+const scoreElment = document.querySelector("#score");
+console.log(scoreElment);
 /////////////////////
 // Event listeners
 /////////////////////
@@ -98,8 +99,9 @@ function spawnZombie () {
 ///////////////////
 // Updates each animation frame
 function update() {
+  scoreElment.innerHTML = `<h1>SCORE: ${score}</h1>`
   if(gameEnd){
-  main.innerHTML = "<h1>GAME OVER!</h1>"
+  main.innerHTML = `<h1>GAME OVER!</h1> <h1>SCORE: ${score}</h1>`
   main.style = "padding:200px;"
 }else{
   ctx.clearRect(0, 0, canvas.width, canvas.height); //refreshes canvas
