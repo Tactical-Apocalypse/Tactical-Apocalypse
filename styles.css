@@ -10,6 +10,7 @@ main{
     align-items: center;
     background-color: black;
     color: white;
+    flex-direction: column;
 }
 #canvas {
     background-image: url(assets/desertmap.jpg) ;
