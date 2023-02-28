@@ -8,7 +8,7 @@ body{
     width: 100vw;
     background-image: linear-gradient(rgb(0, 0, 0), rgb(249, 5, 5));;
     display: flex;
-    justify-content: center;s
+    justify-content: center;
     align-items: center;
 }
 
