@@ -2,7 +2,7 @@
 // Imports
 ///////////////
 import Player from "./source/player.js";
-import Bullet from "./source/bullet.js";
+import Bullet from './source/bullet.js'
 import animate from "./source/animations.js";
 import Zombie from "./source/zombie.js";
 import { distance } from "./source/utils.js";
@@ -12,19 +12,18 @@ import { distance } from "./source/utils.js";
 ///////////////
 export const keyMap = []; // Keep tracks of which key(s) are being pressed down at any given moment
 export const bullets = []; // Keeps track of the bullets that ar shot by the player
-export const player = new Player(); // Creates a player instance
+export const player = new Player (); // Creates a player instance
 export const zombies = [new Zombie(player)]; // Keeps track of the number of active zombies
 let score = 0;
 let gameEnd = false;
-const makeSound = document.getElementById("audio");
-const footsteps = document.getElementById("footstep");
 ////////////////
 // DOM Elements
 ////////////////
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
-const main = document.querySelector("main")
-  
+const main = document.querySelector("main");
+const scoreElment = document.querySelector("#score");
+console.log(scoreElment);
 /////////////////////
 // Event listeners
 /////////////////////
@@ -37,82 +36,76 @@ window.onresize = function () {
 
 document.addEventListener("keydown", keyPressed); // Adds a key as an element to the keyMap array whenever a key is pressed
 document.addEventListener("keyup", keyReleased); // Removes a key as an element from the keyMap array whenever a key is released
-canvas.addEventListener("mousemove", rotatePlayer); // Rotates player to rotate towards mouse position
+canvas.addEventListener ('mousemove', rotatePlayer); // Rotates player to rotate towards mouse position
 document.addEventListener("keydown", fireBullet);
-setInterval(spawnZombie, 5000); // Spawns zombies in intervals
+setInterval(spawnZombie, 5000) // Spawns zombies in intervals
 
 //////////////////
 // Event Handelers
 //////////////////
 // Setup for making the canvas dynamic and adpt to the window viewport size
-function resizeCanvas() {
-  canvas.width = window.innerWidth / 2;
-  canvas.height = window.innerHeight / 2;
-}
+function resizeCanvas () {
+  canvas.width = window.innerWidth/2;
+  canvas.height = window.innerHeight/2;
+};
 
 // Setup for player movement
-function keyPressed(event) {
-  footsteps.play();
-  footsteps.playbackRate = 3.5;
+function keyPressed (event) {
   let key = event.key;
   if (!keyMap.includes(key)) {
     keyMap.push(key);
-  }
-}
+  };
+};
 
-function keyReleased(event) {
+function keyReleased (event) {
   let key = event.key;
   if (keyMap.includes(key)) {
     keyMap.splice(keyMap.indexOf(key), 1);
-  }
-}
+  };
+};
 
 // Setup for player rotation
-function rotatePlayer(event) {
+function rotatePlayer (event) {
   const mousePosition = mousePointer(event);
   player.rotate(mousePosition);
-}
+};
 
-function mousePointer(event) {
+function mousePointer (event) {
   // Element.getBoundingClientRect() return an object of properties that describes the position and size of the element that calls the function
   const rect = canvas.getBoundingClientRect();
   // The x-coordinate of the mouse is represented by the x-position of the mouse within the screen viewport (clientX) minus the x-coordinate value of the canvas (rect.left)
   const x = event.clientX - rect.left;
   // The y-coordinate of the mouse is represented by the y-position of the mouse within the screen viewport (clientY) minus the x-coordinate value of the canvas (rect.top)
   const y = event.clientY - rect.top;
-  return { x, y };
-}
+  return {x, y};
+};
 
 // Setup for firing bullets
-function fireBullet(event) {
-  if (event.code === "Space") {
-    makeSound.play();
-    makeSound.playbackRate = 3.5;
+function fireBullet (event) {
+  if (event.code === 'Space') {
     const bullet = new Bullet(player.pos.x, player.pos.y, player.angle);
     bullets.push(bullet);
-  }
-}
+  };
+};
 
 // Setup for spawning zombies
-function spawnZombie() {
+function spawnZombie () {
   zombies.push(new Zombie(player));
-}
-
+};
+  
+  
 ///////////////////
 // New Frame Logic
 ///////////////////
 // Updates each animation frame
 function update() {
+  scoreElment.innerHTML = `<h1>SCORE: ${score}</h1>`
   if(gameEnd){
-<<<<<<< HEAD
   main.innerHTML = `<h1>GAME OVER!</h1> <h1>SCORE: ${score}</h1><a href="startup.html" id="restart">Restart?</a>`
   let restart = document.getElementById("restart");
   restart.style.textDecoration = "none";
   restart.style.color = "yellow"
   restart.style.fontSize = "25px"
-=======
-  main.innerHTML = "<h1>GAME OVER!</h1>"
->>>>>>> 8ef1d1f903918f856ea57a087640a10f05b9c600
   main.style = "padding:200px;"
 }else{
   ctx.clearRect(0, 0, canvas.width, canvas.height); //refreshes canvas
@@ -145,6 +138,9 @@ function update() {
     }
   })
 }
+};
+
+
 
 animate(update);
 
