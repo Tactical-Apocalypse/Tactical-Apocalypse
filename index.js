@@ -17,7 +17,8 @@ export const zombies = [new Zombie(player)]; // Keeps track of the number of act
 let score = 0;
 let gameEnd = false;
 let shots = document.getElementById("audio");
-let footstep = document.getElementById("footstep");
+let footstep = document.getElementById("footstep");let pause = false;
+
 ////////////////
 // DOM Elements
 ////////////////
