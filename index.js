@@ -14,14 +14,15 @@ export const keyMap = []; // Keep tracks of which key(s) are being pressed down 
 export const bullets = []; // Keeps track of the bullets that ar shot by the player
 export const player = new Player (); // Creates a player instance
 export const zombies = [new Zombie(player)]; // Keeps track of the number of active zombies
-
+let score = 0;
+let gameEnd = false;
 ////////////////
 // DOM Elements
 ////////////////
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
-
-
+const main = document.querySelector("main")
+  
 /////////////////////
 // Event listeners
 /////////////////////
@@ -89,7 +90,6 @@ function fireBullet (event) {
 // Setup for spawning zombies
 function spawnZombie () {
   zombies.push(new Zombie(player));
-  console.log(zombies)
 };
   
   
@@ -98,6 +98,10 @@ function spawnZombie () {
 ///////////////////
 // Updates each animation frame
 function update() {
+  if(gameEnd){
+  main.innerHTML = "<h1>GAME OVER!</h1>"
+  main.style = "padding:200px;"
+}else{
   ctx.clearRect(0, 0, canvas.width, canvas.height); //refreshes canvas
   player.update();
   player.create(ctx);
@@ -111,34 +115,30 @@ function update() {
   });
   player.update();
   player.create(ctx);
-  // for(let bullet in bullets) {
-  //     for(let zombie in zombies) {
-  //       // debugger;
-  //       let d = distance(zombie.pos.x, zombie.pos.y, bullet.vector.x, bullet.vector.y)
-  //       console.log(bullets, zombies);
-  //       if(d < 10) {
-  //         bullets = bullets.splice(bullets.indexOf(bullet), 1);
-  //         // zombies = zombies.splice(.indexOf(this), 1);
-  //         zombies = zombies.splice(zombies.indexOf(zombie), 1);
-  //       }
-  //     }
-      
-  //   }
   bullets.forEach(bullet => {
     zombies.forEach(zombie => {
       let d = distance(zombie.pos.x, zombie.pos.y, bullet.vector.x, bullet.vector.y)
-            console.log(bullets, zombies);
             if(d < 20) {
+              score++;
               bullets.splice(bullets.indexOf(bullet), 1);
               // zombies = zombies.splice(.indexOf(this), 1);
               zombies.splice(zombies.indexOf(zombie), 1);
             }
     })
+  }) 
+  zombies.forEach(zombie => {
+    let d = distance(zombie.pos.x, zombie.pos.y, player.pos.x, player.pos.y)
+    if(d < 10){
+      gameEnd = true
+    }
   })
+}
 };
 
 
+
 animate(update);
+
 ///////////////
 // Exports
 ///////////////
