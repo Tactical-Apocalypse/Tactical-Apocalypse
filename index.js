@@ -43,8 +43,9 @@ document.addEventListener("keydown", keyPressed); // Adds a key as an element to
 document.addEventListener("keyup", keyReleased); // Removes a key as an element from the keyMap array whenever a key is released
 canvas.addEventListener("mousemove", rotatePlayer); // Rotates player to rotate towards mouse position
 document.addEventListener("keydown", fireBullet);
+document.addEventListener("click", fireBullet);
 setInterval(newRound, 10000);
-let roundMulti = 10000/(round*5)
+let roundMulti = 1000/(round*round)
 console.log(roundMulti)
 setInterval(spawnZombie, roundMulti) // Spawns zombies in intervals
 
@@ -90,6 +91,7 @@ function mousePointer (event) {
 
 // Setup for firing bullets
 function fireBullet(event) {
+  console.log(event);
   if (event.code === "Space") {
     shots.play();
     shots.playbackRate = 3;
@@ -100,7 +102,7 @@ function fireBullet(event) {
 
 // Setup for spawning zombies
 function spawnZombie() {
-  zombies.push(new Zombie(player));
+  zombies.push(new Zombie(player, round));
 }
 
 // Setup for killing zombies
@@ -122,7 +124,7 @@ function checkContact(bullets, zombies) {
   });
 }
 
-///////////////////awwawwda
+///////////////////
 // New Frame Logic
 ///////////////////
 // Updates each animation frame
@@ -166,14 +168,17 @@ function update() {
       gameEnd = true
     }
   })
+  
 }
+
 };
 
+if(!gameEnd){animate(update);}
 function newRound(){
   round++
 }
 
-animate(update);
+
 
 ///////////////
 // Exports

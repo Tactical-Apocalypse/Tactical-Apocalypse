@@ -3,7 +3,7 @@
     margin: 0;
 }
 main{
-    height: 100vh;
+    height: 95vh;
     width: 100vw;
     display: flex;
     justify-content: center;
@@ -11,6 +11,7 @@ main{
     /* background-color: black; */
     color: white;
     flex-direction: column;
+    background-image: linear-gradient(rgb(0, 0, 0), rgb(249, 5, 5));;
 }
 #canvas {
     background-image: url(assets/desertmap.jpg) ;
@@ -18,13 +19,21 @@ main{
     max-width: 1000px;
     margin: 10vmin 0; */
 }
+header{
+    background-color: black;
+    color: yellow;
+    width: 100vw;
+    height: 5vh;
+    font-family: 'Creepster', cursive;
+    padding-top: 30px;
+    padding-left: 30px;
+}
 
 body{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: linear-gradient(rgb(0, 0, 0), rgb(249, 5, 5));;
 }
 
 .image {

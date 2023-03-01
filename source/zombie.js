@@ -18,10 +18,9 @@ const zombie = document.querySelector('#zombie');
 // Zombie class
 ////////////////
 class Zombie {
-  speed = 0.7
   radius = 50
-
-  constructor(player) {
+  constructor(player,speed) {
+    this.speed = speed
     this.pos = {
       x: random(0, canvas.width),
       y: random(-300, 0)
