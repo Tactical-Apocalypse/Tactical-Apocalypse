@@ -18,8 +18,9 @@ let score = 0;
 let gameEnd = false;
 let shots = document.getElementById("audio");
 let footstep = document.getElementById("footstep");
+let sound = document.getElementById("sound");
 let background = document.getElementById("background");
-let pause = false;
+let pause = true;
 
 let round = 1;
 ////////////////
@@ -46,7 +47,7 @@ window.onload = function () {
 window.onresize = function () {
   resizeCanvas();
 }; // Resizes canvas to fit the innerWidth and innerHeight of the webpage upon webpage resizing
-
+sound.addEventListener("click", soundbutton);
 document.addEventListener("keydown", keyPressed); // Adds a key as an element to the keyMap array whenever a key is pressed
 document.addEventListener("keyup", keyReleased); // Removes a key as an element from the keyMap array whenever a key is released
 canvas.addEventListener("mousemove", rotatePlayer); // Rotates player to rotate towards mouse position
@@ -66,6 +67,15 @@ function resizeCanvas() {
 }
 
 // Setup for player movement
+function soundbutton() {
+  if (pause === true) {
+    background.play();
+    pause = false;
+  } else {
+    background.pause();
+    pause = true;
+  }
+}
 function keyPressed(event) {
   let key = event.key;
   footstep.play();
