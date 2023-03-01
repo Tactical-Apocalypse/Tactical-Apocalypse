@@ -32,6 +32,7 @@ function spawnPoint () {
 class Zombie {
   radius = 50
   constructor(player,speed) {
+    this.health = 100
     this.speed = speed
     this.pos = spawnPoint()
     this.rotate(player)

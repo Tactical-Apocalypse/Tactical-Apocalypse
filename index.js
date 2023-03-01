@@ -18,8 +18,9 @@ let score = 0;
 let gameEnd = false;
 let shots = document.getElementById("audio");
 let footstep = document.getElementById("footstep");
+let sound = document.getElementById("sound");
 let background = document.getElementById("background");
-let pause = false;
+let isPause = false;
 
 let round = 1;
 ////////////////
@@ -46,7 +47,7 @@ window.onload = function () {
 window.onresize = function () {
   resizeCanvas();
 }; // Resizes canvas to fit the innerWidth and innerHeight of the webpage upon webpage resizing
-
+sound.addEventListener("click", soundbutton);
 document.addEventListener("keydown", keyPressed); // Adds a key as an element to the keyMap array whenever a key is pressed
 document.addEventListener("keyup", keyReleased); // Removes a key as an element from the keyMap array whenever a key is released
 canvas.addEventListener("mousemove", rotatePlayer); // Rotates player to rotate towards mouse position
@@ -55,6 +56,7 @@ setInterval(newRound, 10000);
 let roundMulti = 1000 / (round * round);
 console.log(roundMulti);
 setInterval(spawnZombie, roundMulti); // Spawns zombies in intervals
+document.addEventListener("keydown", pauseGame);
 
 //////////////////
 // Event Handelers
@@ -66,6 +68,15 @@ function resizeCanvas() {
 }
 
 // Setup for player movement
+function soundbutton() {
+  if (pause === true) {
+    background.play();
+    pause = false;
+  } else {
+    background.pause();
+    pause = true;
+  }
+}
 function keyPressed(event) {
   let key = event.key;
   footstep.play();
@@ -133,11 +144,22 @@ function checkContact(bullets, zombies) {
   });
 }
 
+// Steup for pause
+function pauseGame(event) {
+  if (event.key === "p") {
+    isPause = !isPause;
+  }
+  console.log(isPause);
+}
+
 ///////////////////awwawwda
 // New Frame Logic
 ///////////////////
 // Updates each animation frame
 function update() {
+  if (isPause) {
+    return;
+  }
   scoreElement.innerHTML = `<h1>SCORE: ${score}</h1>`;
   roundElement.innerHTML = `<h4>ROUND: ${round}</h4>`;
   if (gameEnd) {
