@@ -20,7 +20,7 @@ let shots = document.getElementById("audio");
 let footstep = document.getElementById("footstep");
 let sound = document.getElementById("sound");
 let background = document.getElementById("background");
-let pause = true;
+let pause = false;
 
 let round = 1;
 ////////////////
@@ -56,6 +56,7 @@ setInterval(newRound, 10000);
 let roundMulti = 1000 / (round * round);
 console.log(roundMulti);
 setInterval(spawnZombie, roundMulti); // Spawns zombies in intervals
+document.addEventListener("keydown", pauseGame);
 
 //////////////////
 // Event Handelers
@@ -143,11 +144,22 @@ function checkContact(bullets, zombies) {
   });
 }
 
+// Steup for pause
+function pauseGame(event) {
+  if (event.key === "p") {
+    isPause = !isPause;
+  }
+  console.log(isPause);
+}
+
 ///////////////////awwawwda
 // New Frame Logic
 ///////////////////
 // Updates each animation frame
 function update() {
+  if (isPause) {
+    return;
+  }
   scoreElement.innerHTML = `<h1>SCORE: ${score}</h1>`;
   roundElement.innerHTML = `<h4>ROUND: ${round}</h4>`;
   if (gameEnd) {
