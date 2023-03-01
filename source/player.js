@@ -2,16 +2,22 @@
 // Imports
 ///////////////
 import { keyMap } from "../index.js";
+import Bullet from "./bullet.js";
+import { bullets, player } from "../index.js";
+
+let shots = document.getElementById("audio");
+let footstep = document.getElementById("footstep");
 
 ////////////////
 // Player class
 ////////////////
 class Player {
-  constructor() {
+  constructor(delay) {
     this.pos = {
       x: canvas.width * 2,
       y: canvas.height * 2,
     };
+    this.delay = 0;
     this.speed = 1.7;
     this.radius = 0;
     this.angle = 0; //-Math.PI / 2;
@@ -44,6 +50,8 @@ class Player {
     // Moves the player up
     if (keyMap.includes("w") && this.pos.y - this.speed - this.radius >= 0) {
       this.pos.y -= this.speed;
+      footstep.play();
+      footstep.playbackRate = 3;
     }
     // Movrs the player down
     if (
@@ -51,10 +59,14 @@ class Player {
       this.pos.y + this.speed + this.radius < canvas.height
     ) {
       this.pos.y += this.speed;
+      footstep.play();
+      footstep.playbackRate = 3;
     }
     // Moves the player to the left
     if (keyMap.includes("a") && this.pos.x - this.speed - this.radius >= 0) {
       this.pos.x -= this.speed;
+      footstep.play();
+      footstep.playbackRate = 3;
     }
     // Moves the player to the right
     if (
@@ -62,12 +74,28 @@ class Player {
       this.pos.x + this.speed + this.radius < canvas.width
     ) {
       this.pos.x += this.speed;
+      footstep.play();
+      footstep.playbackRate = 3;
     }
+  }
+
+  shoot () {
+    if (this.delay <= 0) {
+      if (keyMap.includes(" ")) {
+        shots.play();
+        shots.playbackRate = 3;
+        const bullet = new Bullet(player.pos.x, player.pos.y, player.angle);
+        bullets.push(bullet);
+        this.delay = 50;
+      };
+    };
   }
 
   // Updates the position of the player during each frame
   update() {
     this.move();
+    this.shoot();
+    this.delay--;
   }
 }
 

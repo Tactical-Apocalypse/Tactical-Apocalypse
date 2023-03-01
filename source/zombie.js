@@ -9,9 +9,9 @@ import {random} from "./utils.js";
 const canvas = document.querySelector("#canvas");
 const zombie = document.querySelector('#zombie');
 
-////////////////
-// Variables
-////////////////
+////////////////////
+// Helper Functions
+////////////////////
 function spawnPoint () {
   let spawnPoints = [
     {x: random(canvas.width, canvas.width + 300), y: random(0, canvas.height) },//left spawn
@@ -19,11 +19,9 @@ function spawnPoint () {
     {x: random(0, canvas.width), y: random(-300, 0)}, //top spawn
     {x: random(0, canvas.width), y: random(canvas.height, canvas.height + 300)}// Bottom spawn
   ];
-  let point = Math.floor(random(0, 4))
-  console.log(point);
+  let point = Math.floor(random(0, 4));
   return spawnPoints[point];
-}
-
+};
 
 
 ////////////////
@@ -68,9 +66,6 @@ class Zombie {
   }
 };
 
-// function random (min, max) {
-//   return (Math.random() * (max - min)) + min;
-// };
 ///////////////
 // Exports
 ///////////////
