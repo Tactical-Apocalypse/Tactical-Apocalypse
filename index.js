@@ -144,13 +144,12 @@ function checkContact(bullets, zombies) {
   });
 }
 
-// Steup for pause
+// Setup for pause
 function pauseGame(event) {
   if (event.key === "p") {
     isPause = !isPause;
-  }
-  console.log(isPause);
-}
+  };
+};
 
 ///////////////////awwawwda
 // New Frame Logic
@@ -183,21 +182,7 @@ function update() {
     });
     player.update();
     player.create(ctx);
-    bullets.forEach((bullet) => {
-      zombies.forEach((zombie) => {
-        let d = distance(
-          zombie.pos.x,
-          zombie.pos.y,
-          bullet.vector.x,
-          bullet.vector.y
-        );
-        if (d < 20) {
-          score += round;
-          bullets.splice(bullets.indexOf(bullet), 1);
-          zombies.splice(zombies.indexOf(zombie), 1);
-        }
-      });
-    });
+    checkContact(bullets, zombies);
     zombies.forEach((zombie) => {
       let d = distance(zombie.pos.x, zombie.pos.y, player.pos.x, player.pos.y);
       if (d < 30) {
