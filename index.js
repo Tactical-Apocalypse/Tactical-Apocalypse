@@ -79,9 +79,9 @@ function soundbutton() {
 }
 function keyPressed(event) {
   let key = event.key;
-  footstep.play();
-  footstep.playbackRate = 3;
   if (!keyMap.includes(key)) {
+    footstep.play();
+    footstep.playbackRate = 3;
     keyMap.push(key);
   }
 }
