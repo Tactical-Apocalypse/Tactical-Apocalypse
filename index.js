@@ -21,7 +21,7 @@ let footstep = document.getElementById("footstep");
 let sound = document.getElementById("sound");
 let background = document.getElementById("background");
 let isPause = false;
-
+let pause = true;
 let round = 1;
 ////////////////
 // DOM Elements
@@ -47,7 +47,7 @@ window.onload = function () {
 window.onresize = function () {
   resizeCanvas();
 }; // Resizes canvas to fit the innerWidth and innerHeight of the webpage upon webpage resizing
-sound.addEventListener("click", soundbutton);
+//sound.addEventListener("click", soundbutton);
 document.addEventListener("keydown", keyPressed); // Adds a key as an element to the keyMap array whenever a key is pressed
 document.addEventListener("keyup", keyReleased); // Removes a key as an element from the keyMap array whenever a key is released
 canvas.addEventListener("mousemove", rotatePlayer); // Rotates player to rotate towards mouse position
@@ -57,6 +57,7 @@ let roundMulti = 1000 / (round * round);
 console.log(roundMulti);
 setInterval(spawnZombie, roundMulti); // Spawns zombies in intervals
 document.addEventListener("keydown", pauseGame);
+document.addEventListener("keydown", soundbutton);
 
 //////////////////
 // Event Handelers
@@ -68,13 +69,15 @@ function resizeCanvas() {
 }
 
 // Setup for player movement
-function soundbutton() {
-  if (pause === true) {
-    background.play();
-    pause = false;
-  } else {
-    background.pause();
-    pause = true;
+
+function soundbutton(event) {
+  if (event.key === "m") {
+    if (pause === true) {
+      background.play();
+    } else {
+      background.pause();
+    }
+    pause = !pause;
   }
 }
 function keyPressed(event) {
