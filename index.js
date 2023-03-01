@@ -20,7 +20,7 @@ let shots = document.getElementById("audio");
 let footstep = document.getElementById("footstep");
 let sound = document.getElementById("sound");
 let background = document.getElementById("background");
-let pause = false;
+let isPause = false;
 
 let round = 1;
 ////////////////
