@@ -7,6 +7,12 @@
 // Functions
 /////////////////////
 // Returns a random number between the 'min' and 'max' arguments, inclusive
+/**
+ * Inclusive in first param, exclusive in second
+ * @param {number} min min vale
+ * @param {number} max max val
+ * @returns a number
+ */
 export function random (min, max) {
     return (Math.random() * (max - min)) + min;
 };
