@@ -6,7 +6,7 @@ import Bullet from "./source/bullet.js";
 import animate from "./source/animations.js";
 import Zombie from "./source/zombie.js";
 import { distance } from "./source/utils.js";
-
+import {random} from "./source/utils.js";
 ///////////////
 // Variables
 ///////////////
@@ -28,7 +28,13 @@ const ctx = canvas.getContext("2d");
 const main = document.querySelector("main");
 const scoreElement = document.querySelector("#score");
 const roundElement = document.querySelector("#round");
-
+let spawnPoints = [
+  {x: random(canvas.width, canvas.width + 300), y: random(0, canvas.height) },//right spawn
+  {x: random(-300, 0),  y: random(0, canvas.height)},// left spawn
+  {x: random(0, canvas.width), y: random(-300, 0)}, //top spawn
+  {x: random(0, canvas.width), y: random(canvas.height, canvas.height + 300)}// Bottom spawn
+]
+console.log(spawnPoints[0])
 /////////////////////
 // Event listeners
 /////////////////////
@@ -43,9 +49,8 @@ document.addEventListener("keydown", keyPressed); // Adds a key as an element to
 document.addEventListener("keyup", keyReleased); // Removes a key as an element from the keyMap array whenever a key is released
 canvas.addEventListener("mousemove", rotatePlayer); // Rotates player to rotate towards mouse position
 document.addEventListener("keydown", fireBullet);
-document.addEventListener("click", fireBullet);
 setInterval(newRound, 10000);
-let roundMulti = 1000/(round*round)
+let roundMulti = 10000/(round*5)
 console.log(roundMulti)
 setInterval(spawnZombie, roundMulti) // Spawns zombies in intervals
 
@@ -91,7 +96,6 @@ function mousePointer (event) {
 
 // Setup for firing bullets
 function fireBullet(event) {
-  console.log(event);
   if (event.code === "Space") {
     shots.play();
     shots.playbackRate = 3;
@@ -103,8 +107,9 @@ function fireBullet(event) {
 // Setup for spawning zombies
 function spawnZombie() {
   zombies.push(new Zombie(player, round));
+  console.log(zombies)
 }
-
+   
 // Setup for killing zombies
 function checkContact(bullets, zombies) {
   bullets.forEach((bullet) => {
@@ -124,7 +129,7 @@ function checkContact(bullets, zombies) {
   });
 }
 
-///////////////////
+///////////////////awwawwda
 // New Frame Logic
 ///////////////////
 // Updates each animation frame
@@ -168,17 +173,14 @@ function update() {
       gameEnd = true
     }
   })
-  
 }
-
 };
 
-if(!gameEnd){animate(update);}
 function newRound(){
   round++
 }
 
-
+animate(update);
 
 ///////////////
 // Exports

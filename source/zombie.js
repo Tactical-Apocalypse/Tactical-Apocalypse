@@ -12,6 +12,18 @@ const zombie = document.querySelector('#zombie');
 ////////////////
 // Variables
 ////////////////
+function spawnPoint () {
+  let spawnPoints = [
+    {x: random(canvas.width, canvas.width + 300), y: random(0, canvas.height) },//left spawn
+    {x: random(-300, 0),  y: random(0, canvas.height)},// right spawn
+    {x: random(0, canvas.width), y: random(-300, 0)}, //top spawn
+    {x: random(0, canvas.width), y: random(canvas.height, canvas.height + 300)}// Bottom spawn
+  ];
+  let point = Math.floor(random(0, 4))
+  console.log(point);
+  return spawnPoints[point];
+}
+
 
 
 ////////////////
@@ -21,10 +33,7 @@ class Zombie {
   radius = 50
   constructor(player,speed) {
     this.speed = speed
-    this.pos = {
-      x: random(0, canvas.width),
-      y: random(-300, 0)
-    }
+    this.pos = spawnPoint()
     this.rotate(player)
   }
     
