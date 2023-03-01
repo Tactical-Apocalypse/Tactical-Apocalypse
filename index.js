@@ -43,8 +43,10 @@ document.addEventListener("keydown", keyPressed); // Adds a key as an element to
 document.addEventListener("keyup", keyReleased); // Removes a key as an element from the keyMap array whenever a key is released
 canvas.addEventListener("mousemove", rotatePlayer); // Rotates player to rotate towards mouse position
 document.addEventListener("keydown", fireBullet);
-setInterval(newRound, 1000);
-setInterval(spawnZombie, 5000) // Spawns zombies in intervals
+setInterval(newRound, 10000);
+let roundMulti = 10000/(round*5)
+console.log(roundMulti)
+setInterval(spawnZombie, roundMulti) // Spawns zombies in intervals
 
 //////////////////
 // Event Handelers
@@ -160,7 +162,7 @@ function update() {
   }) 
   zombies.forEach(zombie => {
     let d = distance(zombie.pos.x, zombie.pos.y, player.pos.x, player.pos.y)
-    if(d < 60){
+    if(d < 30){
       gameEnd = true
     }
   })

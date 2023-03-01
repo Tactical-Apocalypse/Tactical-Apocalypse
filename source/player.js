@@ -9,8 +9,8 @@ import { keyMap } from "../index.js";
 class Player {
   constructor() {
     this.pos = {
-      x: canvas.width / 2,
-      y: canvas.height / 2,
+      x: canvas.width * 2,
+      y: canvas.height * 2,
     };
     this.speed = 1.7;
     this.radius = 0;
