@@ -20,6 +20,10 @@ main{
     max-width: 1000px;
     margin: 10vmin 0; */
 }
+
+#controls {
+    text-align : center;
+}
 header{
     background-color: black;
     color: yellow;
